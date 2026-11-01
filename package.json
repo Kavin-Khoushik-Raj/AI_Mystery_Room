@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "engines": { "node": "20.x" },
-  "workspaces": ["client", "server"],
-  "scripts": { "dev": "concurrently \"npm:dev -w server\" \"npm:dev -w client\"", "build": "npm run build -w client", "start": "npm start -w server" },
-  "devDependencies": { "concurrently": "^9.1.2" }
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix client\" \"npm start --prefix server\"",
+    "build": "npm install --prefix client && npm run build --prefix client",
+    "start": "npm install --prefix server && npm start --prefix server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
 }
